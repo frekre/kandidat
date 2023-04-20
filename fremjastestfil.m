@@ -59,17 +59,17 @@ TI=TI/Fs;
 FI=FI*Fs;
 
 %------VISUALISERING-------
-% figure
-% mesh(TI, FI, SRS(:,:,1));
-% xlabel('time')
-% ylabel('frequency')
-% zlabel('energy')
-% 
-% figure
-% mesh(TI, FI, S(:,:,1))
-% xlabel('time')
-% ylabel('frequency')
-% zlabel('energy')
+figure
+mesh(TI, FI, SRS(:,:,1));
+xlabel('time')
+ylabel('frequency')
+zlabel('energy')
+
+figure
+mesh(TI, FI, S(:,:,1))
+xlabel('time')
+ylabel('frequency')
+zlabel('energy')
 
 %-------HITTA MAX i Z------
 Z= SRS(:,:,1);
