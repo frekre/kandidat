@@ -1,16 +1,9 @@
 %testfil för att testa att summera data från neurofilerna. 
 load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
 
-%testing function from sim on neuro
-% testspec=data.trial{1,1};
-% [x, y, zmax] = findcord(testspec, 1)
-
 %-----inputs to test:--------
-%trial = 1; 
 downsample = 8; 
-%channelvector = [18, 19, 27]; %skapas av findChannels
 xvalues = -2:(9/562):7; % få x-axel i sekunder 
-
 
 %------hitta s1 och s2 och ch1 ch2 -------
 [S1, S2] = findS1S2(data); % vektorer innehållande vilka trials som va på sida 1 och vilka som va på sida 2
@@ -21,38 +14,38 @@ channels2 = findChannels(data, {'FC6', 'FT8', 'C6', 'T8', 'CP6', 'TP8'});
 %-----behandling av data--------------
 
 %medelvärdesbildning av kanaler för en trial samt nedsampling: 
-alpha = avgDataChannel(data.trial, channels1, S1(1)); 
-beta = avgDataChannel(data.trial, channels2, S1(1));
+side1 = avgDataChannel(data.trial, channels1, S1(1)); 
+side2 = avgDataChannel(data.trial, channels2, S1(1));
 
-downsampledalpha = resamplingtrial(alpha, 1, downsample);
-downsampledbeta = resamplingtrial(beta, 1, downsample);
+downsampledside1 = resamplingtrial(side1, 1, downsample);
+downsampledside2 = resamplingtrial(side2, 1, downsample);
 
 %högpass filtrering 2 hertz (?)
-fs = length(downsampledalpha)/9; %hur många sampel per sekund efter nedsampling.
-filteredalpha = highpass(downsampledalpha, 2, fs);
-filteredbeta = highpass(downsampledbeta, 2, fs);
+fs = length(downsampledside1)/9; %hur många sampel per sekund efter nedsampling.
+filteredside1 = highpass(downsampledside1, 2, fs);
+filteredside2 = highpass(downsampledside2, 2, fs);
 
 
 %------VISUALISERING--------
 figure 
-plot(xvalues, downsampledalpha(1,:), 'g')
+plot(xvalues, downsampledside1(1,:), 'g')
 title('Sida 1 och 2 under ett 1-trial');
 xlabel('s');
 ylabel('mv');
 legend('sida 1');
 hold on
-plot(xvalues, downsampledbeta(1,:))
+plot(xvalues, downsampledside2(1,:))
 legend('sida1', 'sida2');
 hold off
 
 figure 
-plot(xvalues, filteredalpha(1,:), 'g')
+plot(xvalues, filteredside1(1,:), 'g')
 title('Samma fast högpasssfiltrerade signaler');
 xlabel('s');
 ylabel('mv');
 legend('sida 1');
 hold on
-plot(xvalues, filteredbeta(1,:))
+plot(xvalues, filteredside2(1,:))
 legend('sida1', 'sida2');
 hold off
 
@@ -112,4 +105,12 @@ figure
 mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
 ylabel("Frequency (Hz)")
+
+%mean_energy = avg_energy(S, NN); hur hitta dt df? innan använde vi lambda
+%och K hur gör vi nu? antal sekunder * sampelfrekvens?
+%ska vi göra testfilen till en stor function med data och kanal
+%inmatningar? 
+%
+
+
 
