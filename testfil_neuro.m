@@ -52,11 +52,10 @@ hold off
 %--------S och SRS------
 
 NN=length(S1); % Number of realizations.
-Fs = fs; %kolla! sampel/sek
  
 N=round(4501/downsample); % Signal length
 FFTL=1024; % FFT-length
-lambda=8; % Parameter of the spectrogram window and scaled reassigned spectrogram
+lambda=8; % Parameter of the spectrogram window and scaled reassigned spectrogram, påverkar fönsterlängden och dörmed upplösning i tid och frekvens. 
  
 Xmat=zeros(N,NN);
 S=zeros(FFTL/2,N,NN);
@@ -72,8 +71,8 @@ for i=1:NN
     [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
-TI=TI/Fs;
-FI=FI*Fs;
+TI=TI/fs;
+FI=FI*fs;
  
 figure
 mesh(xvalues, FI, SRS(:,:,1));
@@ -94,8 +93,8 @@ for i=1:NN
     [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
-TI=TI/Fs;
-FI=FI*Fs;
+TI=TI/fs;
+FI=FI*fs;
  
 figure
 mesh(xvalues, FI, SRS(:,:,1));
@@ -106,11 +105,18 @@ mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
 ylabel("Frequency (Hz)")
 
-%mean_energy = avg_energy(S, NN); hur hitta dt df? innan använde vi lambda
-%och K hur gör vi nu? antal sekunder * sampelfrekvens?
-%ska vi göra testfilen till en stor function med data och kanal
-%inmatningar? 
-%
+%----------TESTA FÖNSTER-----------
+%lambda = 12;
+% M=round(lambda*4);  
+% H=exp(-0.5*([-M:M+1]'/lambda).^2);
+% plot(H)
+
+%---------HITTA ENRGI------------
+%i det här fallet så hittar funktionen ett lokalt max på egen hand och
+%summerar kring +-dt och +-df
+[df, dt] = findsigma(lambda, FFTL);
+mean_energy = avg_energy(S, dt, df, NN);
+
 
 
 
