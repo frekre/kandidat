@@ -1,7 +1,7 @@
 function [mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL, downsample )
 %PLots channels and spectograms of filtered and downsampled signals and
 %returns the mean energy of the maximum peak in each side.
-%[mean_energy] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL, downsample )
+%[mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL, downsample )
 %
 %
 %data: input data from a data subject. 
