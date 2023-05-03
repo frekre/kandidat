@@ -106,7 +106,7 @@ xlabel("Time (s)");
 ylabel("Frequency (Hz)")
 
 %----------TESTA FÖNSTER-----------
-%lambda = 12;
+% lambda = 12;
 % M=round(lambda*4);  
 % H=exp(-0.5*([-M:M+1]'/lambda).^2);
 % plot(H)
