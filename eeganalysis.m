@@ -96,7 +96,8 @@ SRS=zeros(FFTL/2,N,NN);
 %-------FILTRERAD S OCH SRS, sida 1: -------
 for i=1:NN
     trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, Stest(i)), 1, downsample);
-    Xmat(:,i) = highpass(trialdata, 2, fs);
+    %Xmat(:,i) = highpass(trialdata, 2, fs);
+    Xmat(:,i) = trialdata;
 end
 
 for i=1:NN
