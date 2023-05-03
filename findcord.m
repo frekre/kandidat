@@ -1,5 +1,5 @@
 function [ZmaxCol, ZmaxRow, Zmax] = findcord(SPEC, realisation)
-%hjälpfunktion för att hittaindex i matris för x och y; 
+%hjälpfunktion för att hitta index i matris för x och y; 
 % zmaxcol --> x (tid ) zmaxrow --> frekvens y 
 Fs = 62.55556;
 tmin = round(2*Fs);

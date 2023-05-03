@@ -19,4 +19,4 @@ FFTL = 1024; %signal length
 downsample = 8; %the signal is downsampled with this factor. 
 
 %RESULTS: 
-[mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL); 
+[mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL);
