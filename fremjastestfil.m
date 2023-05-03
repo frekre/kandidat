@@ -94,7 +94,8 @@ TestA = SRS(x-2:x+2, y-2:y+2, 1);
 %---HITTA ENERGI-----
 energy = energy_of_square(SRS, dt, df, 1)
 mean_energy = avg_energy(SRS, dt, df, NN)
-
+%%
+testenergy = avg_energy(S, dt, df, NN, 2, 20)
 
 %[indexlow, indexhigh, df] = freqtoindex(y_cord, FI, 0.1);
 
