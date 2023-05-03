@@ -96,8 +96,7 @@ SRS=zeros(FFTL/2,N,NN);
 %-------FILTRERAD S OCH SRS, sida 1: -------
 for i=1:NN
     trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, Stest(i)), 1, downsample);
-    %Xmat(:,i) = highpass(trialdata, 2, fs);
-    Xmat(:,i) = trialdata;
+    Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
 end
 
 for i=1:NN
@@ -128,7 +127,7 @@ mean_energy_1 = avg_energy(S, dt, df, NN);
 %------FILTRERAD S OCH SRS sida 2: ---------
 for i=1:NN
     trialdata = resamplingtrial(avgDataChannel(data.trial, channels2, Stest(i)), 1, downsample);
-    Xmat(:,i) = highpass(trialdata, 2, fs);
+    Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
 end
 
 for i=1:NN

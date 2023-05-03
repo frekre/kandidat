@@ -15,16 +15,15 @@ downsample = 8;
 no1 = length(S1);
 no2 = length(S2);
 
-res = zeros(8,(no1+no2));
-
+res = zeros(8,(no1));
 
 
 % Loopar igenom 
-for i = 1:no1
+for i = 1:10
 trialnum = i;
 trialside = 1;
 
-[mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL);
+[mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eegstat(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL);
 
 res(1,i) = mean_energy_1;
 res(2,i) = mean_energy_2;
