@@ -1,5 +1,5 @@
 
-%testfil för att testa eeganalysis funktionen med olika inputvärden. 
+%testfil för att testa eeganalysis-funktionen med olika inputvärden. 
 %--------INPUTS---------
 %DATA:
 load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')

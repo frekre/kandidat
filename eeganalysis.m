@@ -1,8 +1,7 @@
 function [mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL, downsample )
-%PLots channels and spectograms of filtered and downsampled signals and
+%Plots channels and spectograms of filtered and downsampled signals and
 %returns the mean energy of the maximum peak in each side.
 %[mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL, downsample )
-%
 %
 %data: input data from a data subject. 
 %channels1: vector of the numbers for the channels on the left (1) side
@@ -17,7 +16,7 @@ function [mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eeganalysis(da
 
 %kollar inputs:
 if nargin<1
-    'Error: No data input'
+    'Error: No data input';
 end
 if nargin<9
     downsample=8;
@@ -65,24 +64,24 @@ filteredside2 = highpass(downsampledside2, filterfrequency, fs);
 %------VISUALISERING--------
 figure 
 plot(xvalues, downsampledside1(1,:), 'g')
-title('eeg-analys test');
+title('Downsampled signals, left and right side');
 xlabel('s');
 ylabel('mv');
-legend('sida 1');
+legend('side 1');
 hold on
 plot(xvalues, downsampledside2(1,:))
-legend('sida1', 'sida2');
+legend('side 1', 'side 2');
 hold off
 
 figure 
 plot(xvalues, filteredside1(1,:), 'g')
-title('Samma fast högpasssfiltrerade signaler');
+title('Downsampled and higpass-filtered signals, left and right');
 xlabel('s');
 ylabel('mv');
-legend('sida 1');
+legend('side 1');
 hold on
 plot(xvalues, filteredside2(1,:))
-legend('sida1', 'sida2');
+legend('side 1', 'side 2');
 hold off
 
 %--------S och SRS------
