@@ -6,11 +6,11 @@ S1 = [];
 S2= [];
 for i=1:352
     
-    if data.trialinfo{i, 1}.side(1,1) == 1
+    if data.trialinfo{i, 1}.side(1,1) == 1 && data.trialinfo{i, 1}.exp_part(1,1) ==1
         S1(end+1)=i; 
     end
 
-    if data.trialinfo{i, 1}.side(1,1)== 2
+    if data.trialinfo{i, 1}.side(1,1)== 2 && data.trialinfo{i, 1}.exp_part(1,1) ==1
         S2(end+1) = i; 
     end
 end

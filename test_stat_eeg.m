@@ -15,10 +15,11 @@ downsample = 8;
 no1 = length(S1);
 no2 = length(S2);
 
-res = zeros(8,(no1));
+res = zeros(8,no1);
 
 
-% Loopar igenom 
+% Loopar igenom energi hämtas från S och den har redan loopat igenom alla
+% trials. blir kontraproduktivt....
 for i = 1:10
 trialnum = i;
 trialside = 1;

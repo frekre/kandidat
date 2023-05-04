@@ -105,6 +105,30 @@ mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
 ylabel("Frequency (Hz)")
 
+%% Baslinje
+%testar baselinie correction
+trial = 1; 
+channel = 2; 
+xvalues = -2:(9/562):7;
+
+%icke baslinecorrectad för jämförelse: 
+signal = data.trial{1, trial}(channel, :);
+%baselinecorrected: 
+[signaltest, sum] = baselinecorrection(data, channel, trial);
+
+%sampla ned båda
+downsampledandbaselincorrectedsignal = resamplingtrial(signaltest, 1, 8);
+downsampledchannel = resamplingtrial(signal, 1, 8);
+
+%jämför visuellt: 
+figure 
+plot(xvalues, downsampledandbaselincorrectedsignal, 'g');
+legend('baslinje-anpassad');
+hold on
+plot(xvalues, downsampledchannel, 'r');
+legend('baslinje-anpassad', 'icke baslinje-anpassad');
+
+%%
 %----------TESTA FÖNSTER-----------
 % lambda = 12;
 % M=round(lambda*4);  
@@ -114,8 +138,11 @@ ylabel("Frequency (Hz)")
 %---------HITTA ENRGI------------
 %i det här fallet så hittar funktionen ett lokalt max på egen hand och
 %summerar kring +-dt och +-df
-[df, dt] = findsigma(lambda, FFTL);
-mean_energy = avg_energy(S, dt, df, NN);
+% [df, dt] = findsigma(lambda, FFTL);
+% mean_energy = avg_energy(S, dt, df, NN);
+%% testa fieldtrip
+%latency i data.cfg har vi lagt till själv för at specificera tid. 
+ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
 
 
 
