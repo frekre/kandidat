@@ -1,7 +1,10 @@
-function [mean_energy_1, mean_energy_2, z1, y1, x1, z2, y2, x2] = eegstat(data, channels1, channels2, trialside, trialnum, filterfrequency, lambda, FFTL, downsample)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+function [res1, res2] = eegstat(data, channels1, channels2, trialside, filterfrequency, lambda, FFTL, downsample )
+% EEGSTAT beräknar energinivå och koordinat för maxpunkt i varje valt trial
+% (sida 1 eller 2) för channels1 och channels2, och returnerar dessa i två
+% matriser
+% filterfrequency används inte just nu dock
 
+% Behandlar antalet parametrar
 if nargin<1
     'Error: No data input';
 end
@@ -21,29 +24,41 @@ end
 if nargin<5
     trialnum=1;
 end
-if nargin<4
-    trialside=1;
-end
 
-xvalues = -2:(9/562):7; % få x-axel i rätt sekunder 
 
 %------hitta s1 och s2 -------
 [S1, S2] = findS1S2(data); % vektorer innehållande vilka trials som va på sida 1 och vilka som va på sida 2
+
+%---- ger Stest rätt trials utifrån den sida vald i parametrarna----
 Stest = S1;
-if trialside ==2
-     Stest = S2;
-end  
+if trialside == 2
+    Stest = S2;
+end
 
 %-----behandling av data--------------
-%medelvärdesbildning av kanaler för en trial samt nedsampling: 
-side = avgDataChannel(data.trial, channels1, Stest(trialnum)); 
 
-downsampled = resamplingtrial(side, 1, downsample);
 
-%----högpass filtrering-----
-fs = length(downsampled)/9; %hur många sampel per sekund efter nedsampling.
+ch1matrix = zeros(length(Stest),563); %skapar två matriser för att spara medelvärdena för alla aktuella trials
+ch2matrix = zeros(length(Stest),563); %563 eftersom det blir längden (antal sampel) efter nedsampling
 
-%--------S och SRS------
+%medelvärdesbildning av kanaler för alla trials i Stest samt nedsampling:
+
+for i = 1:length(Stest)
+    
+    sidech1 = avgDataChannel(data.trial, channels1, Stest(i));
+    sidech2 = avgDataChannel(data.trial, channels2, Stest(i));
+    
+   
+    ch1matrix(i,:) = resamplingtrial(sidech1, 1, downsample);
+    ch2matrix(i,:) = resamplingtrial(sidech2, 1, downsample);
+    
+ 
+    
+end
+
+fs = round((4501/8)/9); %hur många sampel per sekund efter nedsampling.
+
+%--------Skapar S och SRS-----
 
 NN=length(Stest); % Number of realizations.
 N=round(4501/downsample); % Signal length
@@ -51,44 +66,41 @@ N=round(4501/downsample); % Signal length
 Xmat=zeros(N,NN);
 S=zeros(FFTL/2,N,NN);
 SRS=zeros(FFTL/2,N,NN);
- 
-%-------FILTRERAD S OCH SRS, sida 1: -------
-for i=1:NN
-    trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, Stest(i)), 1, downsample);
-    %Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
-    Xmat(:,i) = trialdata;
+
+xvalues = -2:(9/(N-1)):7; % få x-axel i rätt sekunder
+
+res1 = zeros(length(Stest),3); %resultat för sida 1 sparas här, returneras i slutet
+res2 = zeros(length(Stest),3); %resultat för sida 2
+
+%-------LOOP--------
+
+for n = 1:2 % loopar två gånger, för båda kanalerna
+    
+    for j = 1:length(Stest) % kollar på alla aktuella trials
+        
+        for i=1:NN % fyller i Xmat
+            
+            if n == 1 % kollar om den är på sida 1 eller 2
+                Xmat(:,i) = ch1matrix(j,:);
+            else
+                Xmat(:,i) = ch1matrix(j,:);
+            end
+            
+            for k = 1:NN % skapar S och SRS
+                [SRS(:,:,k),S(:,:,k),TI,FI] = screassignspectrogram(Xmat(:,k),lambda,FFTL);
+            end
+            
+            TI=TI/fs;
+            FI=FI*fs;
+            
+            %[df, dt] = findsigma(lambda, FFTL);
+            
+            if n == 1
+                res1(j,:) = findmax(S, xvalues, FI);
+            else
+                res2(j,:) = findmax(S, xvalues, FI);
+                
+            end
+        end
+    end
 end
-
-for i=1:NN
-    [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
-end
-
-TI=TI/fs;
-FI=FI*fs;
-
-%----energi och max sida 1-------
-%i det här fallet så hittar funktionen ett lokalt max på egen hand och
-%summerar kring +-dt och +-df
-[df, dt] = findsigma(lambda, FFTL);
-mean_energy_1 = avg_energy(S, dt, df, NN);
-[z1, y1, x1] = findmax(S, xvalues, FI);
-
-%------FILTRERAD S OCH SRS sida 2: ---------
-for i=1:NN
-    trialdata = resamplingtrial(avgDataChannel(data.trial, channels2, Stest(i)), 1, downsample);
-    %Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
-    Xmat(:,i) = trialdata;
-end
-
-for i=1:NN
-    [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
-end
-
-TI=TI/fs;
-FI=FI*fs;
-
-%---------energi och max sida 2------------
-mean_energy_2 = avg_energy(S, dt, df, NN);
-[z2, y2, x2] = findmax(S, xvalues, FI);
-end
-
