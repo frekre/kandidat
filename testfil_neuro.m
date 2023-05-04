@@ -114,8 +114,8 @@ ylabel("Frequency (Hz)")
 %---------HITTA ENRGI------------
 %i det här fallet så hittar funktionen ett lokalt max på egen hand och
 %summerar kring +-dt och +-df
-[df, dt] = findsigma(lambda, FFTL);
-mean_energy = avg_energy(S, dt, df, NN);
+% [df, dt] = findsigma(lambda, FFTL);
+% mean_energy = avg_energy(S, dt, df, NN);
 
 
 
