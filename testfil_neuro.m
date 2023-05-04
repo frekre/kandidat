@@ -105,7 +105,7 @@ mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
 ylabel("Frequency (Hz)")
 
-%%
+%% Baslinje
 %testar baselinie correction
 trial = 1; 
 channel = 2; 
@@ -140,6 +140,9 @@ legend('baslinje-anpassad', 'icke baslinje-anpassad');
 %summerar kring +-dt och +-df
 % [df, dt] = findsigma(lambda, FFTL);
 % mean_energy = avg_energy(S, dt, df, NN);
+%% testa fieldtrip
+%latency i data.cfg har vi lagt till själv för at specificera tid. 
+ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
 
 
 
