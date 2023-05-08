@@ -144,7 +144,9 @@ legend('baslinje-anpassad', 'icke baslinje-anpassad');
 %latency i data.cfg har vi lagt till själv för at specificera tid. 
 ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
 
-%%
-
+%% testar essential channels
+trial = 3; 
+side = 2; 
+[indexch, maxchannel] = findEssentialChannels(data, trial, side);
 
 
