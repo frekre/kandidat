@@ -8,21 +8,18 @@ function [res1, res2] = eegstat(data, channels1, channels2, trialside, filterfre
 if nargin<1
     'Error: No data input';
 end
-if nargin<9
+if nargin<8
     downsample=8;
 end
-if nargin<8
+if nargin<7
     FFTL=1024;
 end
-if nargin<7
+if nargin<6
     lambda=8;
 end
 
-if nargin<6
-    filterfrequency=2;
-end
 if nargin<5
-    trialnum=1;
+    filterfrequency=2;
 end
 
 
@@ -83,7 +80,7 @@ for n = 1:2 % loopar två gånger, för båda kanalerna
             if n == 1 % kollar om den är på sida 1 eller 2
                 Xmat(:,i) = ch1matrix(j,:);
             else
-                Xmat(:,i) = ch1matrix(j,:);
+                Xmat(:,i) = ch2matrix(j,:);
             end
             
             for k = 1:NN % skapar S och SRS
