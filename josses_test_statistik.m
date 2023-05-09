@@ -10,7 +10,6 @@ trialside = 1;
 
 [vS, hS, vSRS, hSRS] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
 
-%% energi
 %vänster kanaler från sida 1
 vSmean = mean(vS(:,1))
 vSstd = std(vS(:,1))
@@ -20,7 +19,6 @@ vSRSstd = std(vSRS(:,1))
 figure
 normplot(vS(:,1));
 
-%%
 %höger kanaler från sida 2
 hSmean = mean(hS(:,1))
 hSstd = std(hS(:,1))

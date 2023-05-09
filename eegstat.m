@@ -68,7 +68,7 @@ FI=FI*fs;
 
 %------lagrar resultat i matriser-----
 for i = 1:NN
-    [z1, y1, x1] = findmax(S(:,:,i), xvalues, FI);
+    [z1, y1, x1] = findmax(S(:,:,i), TI, FI);
     
     vS(i,1) = z1;
     vS(i,2) = y1;
@@ -76,7 +76,7 @@ for i = 1:NN
     vS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, vS(i,3), vS(i,2));
     
     
-    [z2, y2, x2] = findmax(SRS(:,:,i), xvalues, FI);
+    [z2, y2, x2] = findmax(SRS(:,:,i), TI, FI);
     vSRS(i,1) = z2;
     vSRS(i,2) = y2;
     vSRS(i,3) = x2;
@@ -98,8 +98,20 @@ end
 
 %------lagrar resultat i matriser-----
 for i = 1:NN
-    hS(i, :) = findmax(S(:,:,i), xvalues, FI);
-    hSRS(i,:) = findmax(SRS(:,:,i), xvalues, FI);
+%     hS(i, :) = findmax(S(:,:,i), TI, FI);
+%     hSRS(i,:) = findmax(SRS(:,:,i), TI, FI);
+%     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
+%     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
+    
+    [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
+    hS(i,1) = z3;
+    hS(i,2) = y3;
+    hS(i,3) = x3;
     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
+    
+    [z4, y4, x4] = findmax(SRS(:,:,i), TI, FI);
+    hSRS(i,1) = z4;
+    hSRS(i,2) = y4;
+    hSRS(i,3) = x4;
     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
 end
