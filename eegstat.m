@@ -43,12 +43,13 @@ Xmat=zeros(N,NN);
 S=zeros(FFTL/2,N,NN);
 SRS=zeros(FFTL/2,N,NN);
 
+[df, dt] = findsigma(lambda, FFTL); %hitta df dt
 xvalues = -2:(9/(N-1)):7; % få x-axel i rätt sekunder
 
-vS = zeros(NN,3); %S-resultat för sida 1 sparas här, returneras i slutet
-hS = zeros(NN,3); %S-resultat för sida 2
-vSRS = zeros(NN,3); %SRS-resultat för sida 1 sparas här, returneras i slutet
-hSRS = zeros(NN,3); %SRS-resultat för sida 2
+vS = zeros(NN,4); %S-resultat för sida 1 sparas här, returneras i slutet
+hS = zeros(NN,4); %S-resultat för sida 2
+vSRS = zeros(NN,4); %SRS-resultat för sida 1 sparas här, returneras i slutet
+hSRS = zeros(NN,4); %SRS-resultat för sida 2
 
 %---------för channel 1:-----------------
 
@@ -66,9 +67,11 @@ TI=TI/fs;
 FI=FI*fs;
 
 %------lagrar resultat i matriser-----
-for i = 1:Stest
+for i = 1:NN
     vS(i, :) = findmax(S(:,:,i), xvalues, FI);
     vSRS(i,:) = findmax(SRS(:,:,i), xvalues, FI);
+    vS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, vS(i,3), vS(i,2));
+    vSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, vSRS(i,3), vSRS(i,2));
 end
 
 
@@ -85,7 +88,9 @@ for i=1:NN
 end
 
 %------lagrar resultat i matriser-----
-for i = 1:Stest
+for i = 1:NN
     hS(i, :) = findmax(S(:,:,i), xvalues, FI);
     hSRS(i,:) = findmax(SRS(:,:,i), xvalues, FI);
+    hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
+    hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
 end
