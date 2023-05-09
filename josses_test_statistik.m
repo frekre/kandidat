@@ -8,4 +8,4 @@ FFTL = 1024; %signal length
 downsample = 8;
 trialside = 1;
 
-[A, B] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
+[vS, hS, vSRS, hSRS] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);

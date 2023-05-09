@@ -1,4 +1,4 @@
-function [res1, res2] = eegstat(data, channels1, channels2, trialside, filterfrequency, lambda, FFTL, downsample )
+function [vS, hS, vSRS, hSRS] = eegstat(data, channels1, channels2, trialside, filterfrequency, lambda, FFTL, downsample )
 % EEGSTAT beräknar energinivå och koordinat för maxpunkt i varje valt trial
 % (sida 1 eller 2) för channels1 och channels2, och returnerar dessa i två
 % matriser
@@ -66,8 +66,10 @@ SRS=zeros(FFTL/2,N,NN);
 
 xvalues = -2:(9/(N-1)):7; % få x-axel i rätt sekunder
 
-res1 = zeros(length(Stest),3); %resultat för sida 1 sparas här, returneras i slutet
-res2 = zeros(length(Stest),3); %resultat för sida 2
+vS = zeros(length(Stest),3); %S-resultat för sida 1 sparas här, returneras i slutet
+hS = zeros(length(Stest),3); %S-resultat för sida 2
+vSRS = zeros(length(Stest),3); %SRS-resultat för sida 1 sparas här, returneras i slutet
+hSRS = zeros(length(Stest),3); %SRS-resultat för sida 2
 
 %---------för cahennel 1:-----------------
 
