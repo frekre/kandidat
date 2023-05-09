@@ -66,6 +66,8 @@ SRS=zeros(FFTL/2,N,NN);
 
 xvalues = -2:(9/(N-1)):7; % få x-axel i rätt sekunder
 
+             
+
 vS = zeros(length(Stest),3); %S-resultat för sida 1 sparas här, returneras i slutet
 hS = zeros(length(Stest),3); %S-resultat för sida 2
 vSRS = zeros(length(Stest),3); %SRS-resultat för sida 1 sparas här, returneras i slutet
@@ -83,7 +85,14 @@ for i=1:NN
     [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
+TI=TI/fs;
+FI=FI*fs;
 %plocka ut energi via SRS(:,:,1) S(:,:,1) via en loop? 
+
+for i = 1:Stest
+    vS(i, :) = findmax(S(:,:,i), xvalues, FI);
+    vSRS(i,:) = findmax(SRS(:,:,i), xvalues, FI);
+end
 
 
 %--------för channel 2:--------- 
@@ -97,7 +106,10 @@ for i=1:NN
     [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 %plocka ut energi via SRS(:,:,1) S(:,:,1) via en loop? 
-
+for i = 1:Stest
+    hS(i, :) = findmax(S(:,:,i), xvalues, FI);
+    hSRS(i,:) = findmax(SRS(:,:,i), xvalues, FI);
+end
 
 
 
