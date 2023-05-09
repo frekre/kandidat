@@ -146,6 +146,7 @@ legend('baslinje-anpassad', 'icke baslinje-anpassad');
 test1 = cell(1, 352);  % Create a cell vector of size 352
 test1{1} = 1;  
 
+<<<<<<< HEAD
 %%
 figure
 ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
@@ -156,5 +157,11 @@ ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
 
 
 
+=======
+%% testar essential channels
+trial = 3; 
+side = 2; 
+[indexch, maxchannel] = findEssentialChannels(data, trial, side);
+>>>>>>> 31634740384541ad8eb940ee2076869a3bec822c
 
 
