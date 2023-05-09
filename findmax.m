@@ -1,11 +1,11 @@
 function [Zmax, y_cord, x_cord] = findmax(SPEC, TI, FI)
-%finding the maximum on the input spectogram, zmax, xcord an d ycord. 
+%finding the maximum on the input spectogram, zmax, xcord and ycord. 
 
 Fs = 62.55556;
 tmin = round(2*Fs);
 tmax = round(6*Fs);
 
-Z= SPEC(:,tmin:tmax,1);
+Z= SPEC(:,tmin:tmax,1); % begränsar tidsfönstret till 0-2 sekunder
 Zmax = max(Z(:));
 
 [Zmax,Idx] = max(Z(:));
