@@ -17,6 +17,10 @@ vSstd = std(vS(:,1))
 vSRSmean = mean(vSRS(:,1))
 vSRSstd = std(vSRS(:,1))
 
+figure
+normplot(vS(:,1));
+
+%%
 %höger kanaler från sida 2
 hSmean = mean(hS(:,1))
 hSstd = std(hS(:,1))
@@ -36,4 +40,4 @@ hSmeansq = mean(hS(:,4))
 hSstdsq = std(hS(:,4))
 hSRSmeansq = mean(hSRS(:,4))
 hSRSstdsq = std(hSRS(:,4))
-%% testar findmax
+

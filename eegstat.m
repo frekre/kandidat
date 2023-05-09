@@ -68,9 +68,18 @@ FI=FI*fs;
 
 %------lagrar resultat i matriser-----
 for i = 1:NN
-    vS(i, :) = findmax(S(:,:,i), xvalues, FI);
-    vSRS(i,:) = findmax(SRS(:,:,i), xvalues, FI);
+    [z1, y1, x1] = findmax(S(:,:,i), xvalues, FI);
+    
+    vS(i,1) = z1;
+    vS(i,2) = y1;
+    vS(i,3) = x1;
     vS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, vS(i,3), vS(i,2));
+    
+    
+    [z2, y2, x2] = findmax(SRS(:,:,i), xvalues, FI);
+    vSRS(i,1) = z2;
+    vSRS(i,2) = y2;
+    vSRS(i,3) = x2;
     vSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, vSRS(i,3), vSRS(i,2));
 end
 
