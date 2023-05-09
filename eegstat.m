@@ -45,11 +45,11 @@ for i = 1:length(Stest)
     sidech1 = avgDataChannel(data.trial, channels1, Stest(i));
     sidech2 = avgDataChannel(data.trial, channels2, Stest(i));
     
-   
+    
     ch1matrix(i,:) = resamplingtrial(sidech1, 1, downsample);
     ch2matrix(i,:) = resamplingtrial(sidech2, 1, downsample);
     
- 
+    
     
 end
 
@@ -69,34 +69,64 @@ xvalues = -2:(9/(N-1)):7; % få x-axel i rätt sekunder
 res1 = zeros(length(Stest),3); %resultat för sida 1 sparas här, returneras i slutet
 res2 = zeros(length(Stest),3); %resultat för sida 2
 
-%-------LOOP--------
+%---------för cahennel 1:-----------------
 
-for n = 1:2 % loopar två gånger, för båda kanalerna
-    
-    for j = 1:length(Stest) % kollar på alla aktuella trials
-        
-        for i=1:NN % fyller i Xmat
-            
-            if n == 1 % kollar om den är på sida 1 eller 2
-                Xmat(:,i) = ch1matrix(j,:);
-            else
-                Xmat(:,i) = ch2matrix(j,:);
-            end
-            
-            [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
-            
-            
-            TI=TI/fs;
-            FI=FI*fs;
-            
-            %[df, dt] = findsigma(lambda, FFTL);
-            
-            if n == 1
-                res1(j,:) = findmax(S, xvalues, FI);
-            else
-                res2(j,:) = findmax(S, xvalues, FI);
-                
-            end
-        end
-    end
+for i=1:NN
+    trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, Stest(i)), 1, downsample);
+    Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
+    %Xmat(:,i) = trialdata;
+end
+
+for i=1:NN
+    [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
+end
+
+%plocka ut energi via SRS(:,:,1) S(:,:,1) via en loop? 
+
+
+%--------för channel 2:--------- 
+for i=1:NN
+    trialdata = resamplingtrial(avgDataChannel(data.trial, channels2, Stest(i)), 1, downsample);
+    Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
+    %Xmat(:,i) = trialdata;
+end
+
+for i=1:NN
+    [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
+end
+%plocka ut energi via SRS(:,:,1) S(:,:,1) via en loop? 
+
+
+
+
+%-------JOSSES OVER_POWERED LOOP--------
+
+% for n = 1:2 % loopar två gånger, för båda kanalerna
+%     
+%     for j = 1:length(Stest) % kollar på alla aktuella trials
+%         
+%         for i=1:NN % fyller i Xmat
+%             
+%             if n == 1 % kollar om den är på sida 1 eller 2
+%                 Xmat(:,i) = ch1matrix(j,:);
+%             else
+%                 Xmat(:,i) = ch2matrix(j,:);
+%             end
+%             
+%             [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
+%             
+%             
+%             TI=TI/fs;
+%             FI=FI*fs;
+%             
+%             %[df, dt] = findsigma(lambda, FFTL);
+%             
+%             if n == 1
+%                 res1(j,:) = findmax(S, xvalues, FI);
+%             else
+%                 res2(j,:) = findmax(S, xvalues, FI);
+%                 
+%             end
+%         end
+%     end
 end
