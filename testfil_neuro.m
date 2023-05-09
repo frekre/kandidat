@@ -1,5 +1,5 @@
 %testfil för att testa att summera data från neurofilerna. 
-load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
+%load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
 
 %-----inputs to test:--------
 downsample = 8; 
@@ -141,10 +141,20 @@ legend('baslinje-anpassad', 'icke baslinje-anpassad');
 % [df, dt] = findsigma(lambda, FFTL);
 % mean_energy = avg_energy(S, dt, df, NN);
 %% testa fieldtrip
-%latency i data.cfg har vi lagt till själv för at specificera tid. 
-ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
+%latency i data.cfg har vi lagt till själv för at specificera tid.
+%
+test1 = cell(1, 352);  % Create a cell vector of size 352
+test1{1} = 1;  
 
 %%
+figure
+ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
+%title('Vid stimuli från höger öra')
+
+
+
+
+
 
 
 

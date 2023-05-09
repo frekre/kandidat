@@ -83,9 +83,8 @@ for n = 1:2 % loopar två gånger, för båda kanalerna
                 Xmat(:,i) = ch2matrix(j,:);
             end
             
-            for k = 1:NN % skapar S och SRS
-                [SRS(:,:,k),S(:,:,k),TI,FI] = screassignspectrogram(Xmat(:,k),lambda,FFTL);
-            end
+            [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
+            
             
             TI=TI/fs;
             FI=FI*fs;

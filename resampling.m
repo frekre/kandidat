@@ -1,4 +1,4 @@
-
+*
 %ange kanal, samplar ner för kanal för alla trials. 
 % channel = 1; %1-60
 % 
