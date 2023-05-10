@@ -96,6 +96,8 @@ for i=1:NN
     [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
+TI=TI/fs;
+FI=FI*fs;
 %------lagrar resultat i matriser-----
 for i = 1:NN
   

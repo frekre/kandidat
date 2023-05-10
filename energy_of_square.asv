@@ -11,10 +11,10 @@ Fsf = length(SPEC)/31.2167;
 if nargin<5
 [x, y] = findcord(SPEC, realisation); 
 end
-if nargin>5
-    x = round((x+2)*Fst); %man skriver in och utgår från -2 men den utgår från noll.
-    y = round(y/Fsf);
-end
+% if nargin>5
+%     x = round((x+2)*Fs); %man skriver in och utgår från -2 men den utgår från noll.
+%     y = round(y/Fs);
+% end
 
 
 xspan = x-dt:1:x+dt; 
