@@ -143,25 +143,24 @@ legend('baslinje-anpassad', 'icke baslinje-anpassad');
 %% testa fieldtrip
 %latency i data.cfg har vi lagt till själv för at specificera tid.
 %
-test1 = cell(1, 352);  % Create a cell vector of size 352
-test1{1} = 1;  
+% test1 = cell(1, 352);  % Create a cell vector of size 352
+% test1{1} = 1; 
+% 
+% for i = 2:352 
+%     test1{i} = 0;
+%     
+% end
 
-<<<<<<< HEAD
-%%
+data.cfg.trials = 1:10;
+
 figure
 ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
 %title('Vid stimuli från höger öra')
 
 
-
-
-
-
-=======
 %% testar essential channels
 trial = 3; 
 side = 2; 
 [indexch, maxchannel] = findEssentialChannels(data, trial, side);
->>>>>>> 31634740384541ad8eb940ee2076869a3bec822c
 
 
