@@ -1,3 +1,10 @@
+%Program för statistik: 
+
+close all
+clear all
+
+load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
+
 %CHANNELS from left and right side:
 channels1 = findChannels(data, {'C3'});
 channels2 = findChannels(data, {'C4'});
@@ -10,14 +17,15 @@ trialside = 1;
 
 [vS, hS, vSRS, hSRS] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
 
+%-------statistiska värden-----------
 %vänster kanaler från sida 1
 vSmean = mean(vS(:,1))
 vSstd = std(vS(:,1))
 vSRSmean = mean(vSRS(:,1))
 vSRSstd = std(vSRS(:,1))
 
-figure
-normplot(vS(:,1));
+% figure
+% normplot(vS(:,1));
 
 %höger kanaler från sida 2
 hSmean = mean(hS(:,1))
@@ -38,4 +46,5 @@ hSmeansq = mean(hS(:,4))
 hSstdsq = std(hS(:,4))
 hSRSmeansq = mean(hSRS(:,4))
 hSRSstdsq = std(hSRS(:,4))
+
 
