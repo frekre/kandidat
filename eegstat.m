@@ -96,12 +96,10 @@ for i=1:NN
     [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
+TI=TI/fs;
+FI=FI*fs;
 %------lagrar resultat i matriser-----
 for i = 1:NN
-%     hS(i, :) = findmax(S(:,:,i), TI, FI);
-%     hSRS(i,:) = findmax(SRS(:,:,i), TI, FI);
-%     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
-%     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
     
     [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
     hS(i,1) = z3;

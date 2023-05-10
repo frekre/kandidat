@@ -5,14 +5,15 @@ function [energy] = energy_of_square(SPEC, dt, df, realisation, x, y)
 %realisation är vilken realisation man summerar.
 %x och y är mittpunkten man vill utgå ifrån i tid och frekvens.
 
-Fs = 62.55556;
+Fst = 62.55556;
+Fsf = length(SPEC)/31.2167;
 
 if nargin<5
 [x, y] = findcord(SPEC, realisation); 
 end
 if nargin>5
-    x = round((x+2)*Fs); %man skriver in och utgår från -2 men den utgår från noll.
-    y = round(y/Fs);
+    x = round((x+2)*Fst); %man skriver in och utgår från -2 men den utgår från noll.
+    y = round(y*Fsf);
 end
 
 
