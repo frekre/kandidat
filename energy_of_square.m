@@ -13,7 +13,7 @@ if nargin<5
 end
 if nargin>5
     x = round((x+2)*Fst); %man skriver in och utgår från -2 men den utgår från noll.
-    y = round(y/Fsf);
+    y = round(y*Fsf);
 end
 
 
