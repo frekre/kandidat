@@ -63,3 +63,27 @@ sgtitle('Stimuli i vänster öra, högra kanaler')
 
 figure
 histogram(vSRS(:,4));
+%%
+figure
+subplot(2,1,1)
+normplot(vS(:,2));
+subtitle('Normplot av frekvens för max från S')
+subplot(2,1,2)
+normplot(vSRS(:,2));
+subtitle('Normplot av frekvens för max från SRS')
+sgtitle('Stimuli i vänster öra, vänstra kanaler')
+%%
+
+
+figure
+subplot(2,1,1)
+histogram(vS(:,4), 'NumBins', 70)
+subtitle('Histogram av energi i ruta från S')
+subplot(2,1,2)
+histogram(vSRS(:,4), 'NumBins', 70);
+subtitle('Normplot av energi i ruta från SRS')
+sgtitle('Stimuli i vänster öra, vänstra kanaler')   
+
+% Set the title
+% xlabel('Values')                    % Set the x-axis label
+% ylabel('Frequency')                 % Set the y-axis label
