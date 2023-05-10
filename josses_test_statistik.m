@@ -16,8 +16,6 @@ vSstd = std(vS(:,1))
 vSRSmean = mean(vSRS(:,1))
 vSRSstd = std(vSRS(:,1))
 
-figure
-normplot(vS(:,1));
 
 %höger kanaler från sida 2
 hSmean = mean(hS(:,1))
@@ -39,3 +37,29 @@ hSstdsq = std(hS(:,4))
 hSRSmeansq = mean(hSRS(:,4))
 hSRSstdsq = std(hSRS(:,4))
 
+%%
+
+figure
+subplot(2,1,1)
+normplot(vS(:,4));
+subtitle('Normplot av energi i ruta från S')
+subplot(2,1,2)
+normplot(vSRS(:,4));
+subtitle('Normplot av energi i ruta från SRS')
+sgtitle('Stimuli i vänster öra, vänstra kanaler')
+
+%%
+
+figure
+subplot(2,1,1)
+normplot(hS(:,4));
+subtitle('Normplot av energi i ruta från S')
+subplot(2,1,2)
+normplot(hSRS(:,4));
+subtitle('Normplot av energi i ruta från SRS')
+sgtitle('Stimuli i vänster öra, högra kanaler')
+
+%%
+
+figure
+histogram(vSRS(:,4));

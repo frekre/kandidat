@@ -98,18 +98,16 @@ end
 
 %------lagrar resultat i matriser-----
 for i = 1:NN
-%     hS(i, :) = findmax(S(:,:,i), TI, FI);
-%     hSRS(i,:) = findmax(SRS(:,:,i), TI, FI);
-%     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
-%     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
-    
+  
     [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
+    
     hS(i,1) = z3;
-    hS(i,2) = y3;
+    hS(i,2) = y3; %Vi verkar få ut fel frekvens från detta?? KOLLA! ex 53
     hS(i,3) = x3;
     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
     
     [z4, y4, x4] = findmax(SRS(:,:,i), TI, FI);
+    
     hSRS(i,1) = z4;
     hSRS(i,2) = y4;
     hSRS(i,3) = x4;
