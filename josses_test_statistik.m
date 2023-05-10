@@ -47,4 +47,60 @@ hSstdsq = std(hS(:,4))
 hSRSmeansq = mean(hSRS(:,4))
 hSRSstdsq = std(hSRS(:,4))
 
+%%
+figure
+subplot(2,1,1)
+normplot(vS(:,2));
+subtitle('Normplot av frekvens för max från S')
+subplot(2,1,2)
+normplot(vSRS(:,2));
+subtitle('Normplot av frekvens för max från SRS')
+sgtitle('Stimuli i vänster öra, vänstra kanaler')
+%% Fyra olika i ett fönster
+
+figure
+subplot(2,2,1)
+histogram(vS(:,4), 'NumBins', 70)
+axis([0 15*10^5 0 9])
+subtitle('Histogram av energi i ruta från S - vänster')
+subplot(2,2,3)
+histogram(vSRS(:,4), 'NumBins', 70);
+axis([0 15*10^5 0 9])
+subtitle('Normplot av energi i ruta från SRS - vänster')
+sgtitle('Stimuli i vänster öra')   
+
+subplot(2,2,2)
+histogram(hS(:,4), 'NumBins', 70)
+axis([0 15*10^5 0 9])
+subtitle('Histogram av energi i ruta från S - höger')
+subplot(2,2,4)
+histogram(hSRS(:,4), 'NumBins', 70);
+axis([0 15*10^5 0 9])
+subtitle('Normplot av energi i ruta från SRS - höger')
+%sgtitle('Stimuli i vänster öra, högra kanaler')  
+%% försök få fler i en!
+
+figure
+subplot(2,2,1)
+histogram(vS(:,4), 'NumBins', 70)
+axis([0 15*10^5 0 9])
+subtitle('Histogram av energi i ruta från S - vänster')
+subplot(2,2,3)
+histogram(vSRS(:,4), 'NumBins', 70);
+axis([0 15*10^5 0 9])
+subtitle('Normplot av energi i ruta från SRS - vänster')
+sgtitle('Stimuli i vänster öra')   
+
+subplot(2,2,2)
+histogram(hS(:,4), 'NumBins', 70)
+axis([0 15*10^5 0 9])
+subtitle('Histogram av energi i ruta från S - höger')
+subplot(2,2,4)
+histogram(hSRS(:,4), 'NumBins', 70);
+axis([0 15*10^5 0 9])
+subtitle('Normplot av energi i ruta från SRS - höger')
+% Set the title
+% xlabel('Values')                    % Set the x-axis label
+% ylabel('Frequency')                 % Set the y-axis label
+
 

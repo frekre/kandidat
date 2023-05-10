@@ -5,7 +5,7 @@ function [energy] = energy_of_square(SPEC, dt, df, realisation, x, y)
 %realisation är vilken realisation man summerar.
 %x och y är mittpunkten man vill utgå ifrån i tid och frekvens.
 
-Fst = 62.55556;
+Fst = size(SPEC, 2)/9;
 Fsf = length(SPEC)/31.2167;
 
 if nargin<5
