@@ -11,8 +11,8 @@ Zmax = max(Z(:));
 [Zmax,Idx] = max(Z(:));
 [ZmaxRow,ZmaxCol] = ind2sub(size(Z), Idx);
 
-x_cord = TI(ZmaxCol);
-y_cord =FI(ZmaxRow);
+ x_cord = TI(ZmaxCol);
+ y_cord =FI(ZmaxRow);
 
 end
 
