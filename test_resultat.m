@@ -1,10 +1,3 @@
-
-close all
-clear all
-
-%ladda upp rätt data
-load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj13.mat', 'data')
-
 %kalla på resultat
 %innan: gå in i metod, fixa axlar + titel
 
