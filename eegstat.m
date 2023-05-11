@@ -83,6 +83,10 @@ FI=FI*fs;
 
 Sdiff = SV - SH;
 SRSdiff = SRSV - SRSH;
+if trialside ==1
+    Sdiff = SH-SV;
+    SRSdiff = SRSH-SRSV;
+end
 
 
 for i = 1:NN
