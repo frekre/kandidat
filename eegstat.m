@@ -1,4 +1,4 @@
-function [vS, hS, vSRS, hSRS] = eegstat(data, channels1, channels2, trialside, filterfrequency, lambda, FFTL, downsample )
+function [vS, hS, vSRS, hSRS, Sdiff, SRSdiff] = eegstat(data, channels1, channels2, trialside, filterfrequency, lambda, FFTL, downsample )
 % EEGSTAT beräknar energinivå och koordinat för maxpunkt i varje valt trial
 % (sida 1 eller 2) för channels1 och channels2, och returnerar dessa i fyra
 % matriser

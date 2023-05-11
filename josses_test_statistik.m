@@ -15,9 +15,9 @@ FFTL = 1024; %signal length
 downsample = 8;
 trialside = 1;
 
-[vS1, hS1, vSRS1, hSRS1] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
+[vS1, hS1, vSRS1, hSRS1, Sdiff1, SRSdiff1] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
 trialside = 2;
-[vS2, hS2, vSRS2, hSRS2] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
+[vS2, hS2, vSRS2, hSRS2, Sdiff2, SRSdiff2] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
 %-------statistiska värden-----------
 % %vänster kanaler från sida 1
 % vSmean = mean(vS(:,1))
@@ -129,14 +129,14 @@ hold off
 figure 
 subplot(2,2,1)
 h1= histfit(vS1(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hS1(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
@@ -145,14 +145,14 @@ hold off
 
 subplot(2,2,2)
 h1= histfit(vS2(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hS2(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
@@ -161,14 +161,14 @@ hold off
 
 subplot(2,2,3)
 h1= histfit(vSRS1(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hSRS1(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
@@ -177,17 +177,19 @@ hold off
 
 subplot(2,2,4)
 h1= histfit(vSRS2(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hSRS2(:,4), 70, 'kernel');
-axis([0 18*10^5 0 9])
+%axis([0 18*10^5 0 9])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
 subtitle('sida 2 trial och SRS');
 hold off
 
+%%
+mesh(diffS)
