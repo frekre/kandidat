@@ -83,6 +83,32 @@ mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
 ylabel("Frequency (Hz)")
 
+[zL, yL, xL] = findmax(SRS, TI, FI)
+[zz, yy, xx] = findmax(SRS, xvalues, FI)
+
+[df, dt] = findsigma(lambda, FFTL);
+
+for i = 1:NN
+%     hS(i, :) = findmax(S(:,:,i), TI, FI);
+%     hSRS(i,:) = findmax(SRS(:,:,i), TI, FI);
+%     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
+%     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
+    
+    [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
+    testhS(i,1) = z3;
+    testhS(i,2) = y3;
+    testhS(i,3) = x3;
+    testhS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, testhS(i,3), testhS(i,2));
+    
+    [z4, y4, x4] = findmax(SRS(:,:,i), TI, FI);
+    testhSRS(i,1) = z4;
+    testhSRS(i,2) = y4;
+    testhSRS(i,3) = x4;
+    testhSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, testhSRS(i,3), testhSRS(i,2));
+end
+
+
+%%
 %OFILTRERAD
 for i=1:NN
     trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, S1(i)), 1, downsample);
@@ -104,6 +130,8 @@ figure
 mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
 ylabel("Frequency (Hz)")
+
+
 
 %% Baslinje
 %testar baselinie correction
@@ -143,10 +171,16 @@ legend('baslinje-anpassad', 'icke baslinje-anpassad');
 %% testa fieldtrip
 %latency i data.cfg har vi lagt till själv för at specificera tid.
 %
-test1 = cell(1, 352);  % Create a cell vector of size 352
-test1{1} = 1;  
+% test1 = cell(1, 352);  % Create a cell vector of size 352
+% test1{1} = 1; 
+% 
+% for i = 2:352 
+%     test1{i} = 0;
+%     
+% end
 
-<<<<<<< HEAD
+data.cfg.trials = 1:10;
+
 %%
 figure
 ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
@@ -157,11 +191,6 @@ ft_topoplotER(data.cfg, ft_timelockanalysis(data.cfg, data));
 
 
 
-=======
-%% testar essential channels
-trial = 3; 
-side = 2; 
-[indexch, maxchannel] = findEssentialChannels(data, trial, side);
->>>>>>> 31634740384541ad8eb940ee2076869a3bec822c
+
 
 
