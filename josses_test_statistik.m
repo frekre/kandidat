@@ -1,13 +1,13 @@
 %Program för statistik: 
 
-%close all
-%clear all
+close all
+clear all
 
-%load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
+load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj13.mat', 'data')
 
 %CHANNELS from left and right side:
-channels1 = findChannels(data, {'C3'});
-channels2 = findChannels(data, {'C4'});
+channels1 = findChannels(data, {'FC3'});
+channels2 = findChannels(data, {'FC4'});
 
 
 filterfrequency = 2; %in hertz
@@ -126,11 +126,12 @@ plot(x1,numel(vS(:,4))*f1, 'b')
 hold off
 
 %% testar histfit S
+axparam = [0 8*10^6 0 11];
 
 figure 
 subplot(2,2,1)
 h1= histfit(vS1(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -138,7 +139,7 @@ h1(2).Color = 'b';
 h1(1).FaceAlpha = 0.7;
 hold on
 h2 = histfit(hS1(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
@@ -148,7 +149,7 @@ hold off
 
 subplot(2,2,2)
 h1= histfit(vS2(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -156,7 +157,7 @@ h1(2).Color = 'b';
 h1(1).FaceAlpha = 0.7;
 hold on
 h2 = histfit(hS2(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
@@ -166,7 +167,7 @@ hold off
 
 subplot(2,2,3)
 h1= histfit(vSRS1(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -174,7 +175,7 @@ h1(2).Color = 'b';
 h1(1).FaceAlpha = 0.7;
 hold on
 h2 = histfit(hSRS1(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
@@ -184,7 +185,7 @@ hold off
 
 subplot(2,2,4)
 h1= histfit(vSRS2(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -192,13 +193,14 @@ h1(2).Color = 'b';
 h1(1).FaceAlpha = 0.7;
 hold on
 h2 = histfit(hSRS2(:,4), 70, 'kernel');
-axis([0 2.5*10^6 0 18])
+axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
 subtitle('sida 2 trial och SRS');
 hold off
+sgtitle("Subjekt 13");
 
 %%
 figure
@@ -208,3 +210,6 @@ figure
 mesh(TI, FI, vS1(:,:,1));
 figure
 mesh(TI, FI, hS1(:,:,1));
+
+%%
+resultmaker(data, {'FC3'}, {'FC4'});

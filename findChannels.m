@@ -8,6 +8,9 @@ for a = 1:length(name)
             channel(end +1) = i;
         end
     end
+    if length(channel) ==0
+    'Error: Channel is a reject';
+    end
 end
 
 
