@@ -1,9 +1,9 @@
 %Program för statistik: 
 
-close all
-clear all
+%close all
+%clear all
 
-load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
+%load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
 
 %CHANNELS from left and right side:
 channels1 = findChannels(data, {'C3'});

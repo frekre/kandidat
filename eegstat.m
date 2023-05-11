@@ -60,27 +60,7 @@ for i=1:NN
 end
 
 for i=1:NN
-    [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
-end
-
-TI=TI/fs;
-FI=FI*fs;
-
-%------lagrar resultat i matriser-----
-for i = 1:NN
-    [z1, y1, x1] = findmax(S(:,:,i), TI, FI);
-    
-    vS(i,1) = z1;
-    vS(i,2) = y1;
-    vS(i,3) = x1;
-    vS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, vS(i,3), vS(i,2));
-    
-    
-    [z2, y2, x2] = findmax(SRS(:,:,i), TI, FI);
-    vSRS(i,1) = z2;
-    vSRS(i,2) = y2;
-    vSRS(i,3) = x2;
-    vSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, vSRS(i,3), vSRS(i,2));
+    [SRSV(:,:,i),SV(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
 
@@ -93,23 +73,46 @@ end
 
 
 for i=1:NN
-    [SRS(:,:,i),S(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
+    [SRSH(:,:,i),SH(:,:,i),TI,FI] = screassignspectrogram(Xmat(:,i),lambda,FFTL);
 end
 
 TI=TI/fs;
 FI=FI*fs;
+
+Sdiff = SV - SH;
+SRSdiff = SRSV - SRSH;
+
+for i = 1:NN
+    [z1, y1, x1] = findmax(Sdiff(:,:,i), TI, FI);
+    
+    vS(i,1) = z1;
+    vS(i,2) = y1;
+    vS(i,3) = x1;
+    vS(i,4) = energy_of_square(SV(:,:,i), dt, df, 1, vS(i,3), vS(i,2));
+    
+    
+    [z2, y2, x2] = findmax(SRSdiff(:,:,i), TI, FI);
+    vSRS(i,1) = z2;
+    vSRS(i,2) = y2;
+    vSRS(i,3) = x2;
+    vSRS(i,4) = energy_of_square(SRSV(:,:,i), dt, df, 1, vSRS(i,3), vSRS(i,2));
+end
+
+
 %------lagrar resultat i matriser-----
 for i = 1:NN
     
-    [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
+    [z3, y3, x3] = findmax(Sdiff(:,:,i), TI, FI);
     hS(i,1) = z3;
     hS(i,2) = y3;
     hS(i,3) = x3;
-    hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
+    hS(i,4) = energy_of_square(SH(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
     
-    [z4, y4, x4] = findmax(SRS(:,:,i), TI, FI);
+    [z4, y4, x4] = findmax(SRSdiff(:,:,i), TI, FI);
     hSRS(i,1) = z4;
     hSRS(i,2) = y4;
     hSRS(i,3) = x4;
-    hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
+    hSRS(i,4) = energy_of_square(SRSH(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
 end
+
+
