@@ -37,7 +37,7 @@ NN = length(Stest); % Number of realizations.
 %--------Skapar S och SRS-----
 
 N=round(4501/downsample); % Signal length
-fs = round((4501/8)/9); %hur många sampel per sekund efter nedsampling.
+fs = round((4501/downsample)/9); %hur många sampel per sekund efter nedsampling.
 
 Xmat=zeros(N,NN);
 
