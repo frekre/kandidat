@@ -6,9 +6,10 @@ tmin = round(2*Fs);
 tmax = round(4*Fs);
 
 Z= SPEC(:,tmin:tmax,1); % begränsar tidsfönstret till 0-2 sekunder
-Zmax = max(Z(:));
+%Zmax = max(Z(:));
 
-[Zmax,Idx] = max(Z(:));
+[Zmax,Idx] = max(abs(Z(:)));
+
 [ZmaxRow,ZmaxCol] = ind2sub(size(Z), Idx);
 
  x_cord = TI(ZmaxCol);

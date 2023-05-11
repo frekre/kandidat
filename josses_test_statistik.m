@@ -15,9 +15,9 @@ FFTL = 1024; %signal length
 downsample = 8;
 trialside = 1;
 
-[vS1, hS1, vSRS1, hSRS1, Sdiff1, SRSdiff1] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
+[vS1, hS1, vSRS1, hSRS1, Sdiff1, SRSdiff1, TI, FI] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
 trialside = 2;
-[vS2, hS2, vSRS2, hSRS2, Sdiff2, SRSdiff2] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
+[vS2, hS2, vSRS2, hSRS2, Sdiff2, SRSdiff2, TI, FI] = eegstat(data,channels1,channels2,trialside,filterfrequency,lambda,FFTL,downsample);
 %-------statistiska värden-----------
 % %vänster kanaler från sida 1
 % vSmean = mean(vS(:,1))
@@ -192,4 +192,10 @@ subtitle('sida 2 trial och SRS');
 hold off
 
 %%
-mesh(diffS)
+figure
+mesh(TI, FI, Sdiff1(:,:,1));
+%%
+figure
+mesh(TI, FI, vS1(:,:,1));
+figure
+mesh(TI, FI, hS1(:,:,1));
