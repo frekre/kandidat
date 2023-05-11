@@ -9,6 +9,7 @@
 channels1 = findChannels(data, {'C3'});
 channels2 = findChannels(data, {'C4'});
 
+
 filterfrequency = 2; %in hertz
 lambda = 8; %gaussian window parameter
 FFTL = 1024; %signal length
