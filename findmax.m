@@ -7,7 +7,7 @@ tmax = round(4*Fs);
 
 Z= SPEC(:,tmin:tmax,1); % begränsar tidsfönstret till 0-2 sekunder
 
-[Zmax,Idx] = max(abs(Z(:)));
+[Zmax,Idx] = max(Z(:));
 
 [ZmaxRow,ZmaxCol] = ind2sub(size(Z), Idx);
 
