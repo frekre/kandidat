@@ -40,11 +40,13 @@ N=round(4501/downsample); % Signal length
 fs = round((4501/8)/9); %hur många sampel per sekund efter nedsampling.
 
 Xmat=zeros(N,NN);
-S=zeros(FFTL/2,N,NN);
-SRS=zeros(FFTL/2,N,NN);
+
+SV=zeros(FFTL/2,N,NN);
+SH=zeros(FFTL/2,N,NN);
+SRSV=zeros(FFTL/2,N,NN);
+SRSH=zeros(FFTL/2,N,NN);
 
 [df, dt] = findsigma(lambda, FFTL); %hitta df dt
-xvalues = -2:(9/(N-1)):7; % få x-axel i rätt sekunder
 
 vS = zeros(NN,4); %S-resultat för sida 1 sparas här, returneras i slutet
 hS = zeros(NN,4); %S-resultat för sida 2
@@ -81,6 +83,7 @@ FI=FI*fs;
 
 Sdiff = SV - SH;
 SRSdiff = SRSV - SRSH;
+
 
 for i = 1:NN
     [z1, y1, x1] = findmax(Sdiff(:,:,i), TI, FI);
