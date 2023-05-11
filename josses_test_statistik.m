@@ -129,14 +129,14 @@ hold off
 figure 
 subplot(2,2,1)
 h1= histfit(vS1(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hS1(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
@@ -145,14 +145,14 @@ hold off
 
 subplot(2,2,2)
 h1= histfit(vS2(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hS2(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
@@ -161,14 +161,14 @@ hold off
 
 subplot(2,2,3)
 h1= histfit(vSRS1(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hSRS1(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
@@ -177,14 +177,14 @@ hold off
 
 subplot(2,2,4)
 h1= histfit(vSRS2(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 xlabel('energy');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
 h1(2).Color = 'b';
 hold on
 h2 = histfit(hSRS2(:,4), 70, 'kernel');
-%axis([0 18*10^5 0 9])
+axis([0 2.5*10^6 0 18])
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
