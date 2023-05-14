@@ -12,7 +12,7 @@ Z= SPEC(:,tmin:tmax,1); % begränsar tidsfönstret till 0-2 sekunder
 [ZmaxRow,ZmaxCol] = ind2sub(size(Z), Idx);
 
  x_cord = TI(ZmaxCol);
- y_cord =FI(ZmaxRow);
+ y_cord = FI(ZmaxRow);
 
 end
 

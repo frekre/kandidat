@@ -80,10 +80,14 @@ end
 
 TI=TI/fs;
 FI=FI*fs;
-
+% 
 Sdiff = SV - SH;
 SRSdiff = SRSV - SRSH;
+% Sdiff = SV;
+% SRSdiff = SRSV;
 if trialside ==1
+%     Sdiff = SH;
+%     SRSdiff = SRSH;
     Sdiff = SH-SV;
     SRSdiff = SRSH-SRSV;
 end

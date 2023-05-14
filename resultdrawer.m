@@ -15,8 +15,8 @@ axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
-legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
-subtitle('sida 1 trial och S');
+legend('Channel 1', 'Channel 1 kernel', 'Channel 2', 'Channel 2 kernel');
+subtitle('1-trial, S');
 hold off
 
 subplot(2,2,2)
@@ -33,8 +33,9 @@ axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
-legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
-subtitle('sida 2 trial och S');
+% legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
+legend('Channel 1', 'Channel 1 kernel', 'Channel 2', 'Channel 2 kernel');
+subtitle('2-trial och S');
 hold off
 
 subplot(2,2,3)
@@ -51,8 +52,8 @@ axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
-legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
-subtitle('sida 1 trial och SRS');
+legend('Channel 1', 'Channel 1 kernel', 'Channel 2', 'Channel 2 kernel');
+subtitle('1-trial och SRS');
 hold off
 
 subplot(2,2,4)
@@ -69,8 +70,8 @@ axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
-legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
-subtitle('sida 2 trial och SRS');
+legend('Channel 1', 'Channel 1 kernel', 'Channel 2', 'Channel 2 kernel');
+subtitle('2-trial och SRS');
 hold off
 sgtitle(title);
 end

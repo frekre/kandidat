@@ -1,5 +1,5 @@
 %testfil för att testa att summera data från neurofilerna. 
-%load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
+load('/Users/fremjaekre/Documents/MATLAB/Kandidat/neuro_data/dataSubj10.mat', 'data')
 
 %-----inputs to test:--------
 downsample = 8; 
@@ -8,8 +8,8 @@ xvalues = -2:(9/562):7; % få x-axel i sekunder
 %------hitta s1 och s2 och ch1 ch2 -------
 [S1, S2] = findS1S2(data); % vektorer innehållande vilka trials som va på sida 1 och vilka som va på sida 2
 
-channels1 = findChannels(data, {'FT7', 'FC5', 'T7', 'C5', 'TP7', 'CP5'});
-channels2 = findChannels(data, {'FC6', 'FT8', 'C6', 'T8', 'CP6', 'TP8'});
+channels1 = findChannels(data, {'C3'});
+channels2 = findChannels(data, {'C4'});
 
 %-----behandling av data--------------
 
@@ -29,13 +29,13 @@ filteredside2 = highpass(downsampledside2, 2, fs);
 %------VISUALISERING--------
 figure 
 plot(xvalues, downsampledside1(1,:), 'g')
-title('Sida 1 och 2 under ett 1-trial');
+title('Kanal från sida 1 och 2 under ett 1-trial');
 xlabel('s');
 ylabel('mv');
-legend('sida 1');
+legend('kanal 1');
 hold on
 plot(xvalues, downsampledside2(1,:))
-legend('sida1', 'sida2');
+legend('kanal 1', 'kanal 2');
 hold off
 
 figure 
@@ -63,7 +63,7 @@ SRS=zeros(FFTL/2,N,NN);
  
 %FILTRERAD S OCH SRS: 
 for i=1:NN
-    trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, S1(i)), 1, downsample);
+    trialdata = resamplingtrial(avgDataChannel(data.trial, channels2, S1(i)), 1, downsample);
     Xmat(:,i) = highpass(trialdata, 2, fs);
 end
 
@@ -77,35 +77,39 @@ FI=FI*fs;
 figure
 mesh(xvalues, FI, SRS(:,:,1));
 xlabel("Time (s)");
-ylabel("Frequency (Hz)")
+ylabel("Frequency (Hz)");
+zlabel("Energy (PSD)");
+title("Example of Scaled Reassigned Spectrogram");
 figure
 mesh(xvalues, FI, S(:,:,1));
 xlabel("Time (s)");
-ylabel("Frequency (Hz)")
+ylabel("Frequency (Hz)");
+zlabel("Energy (PSD)");
+title("Example of spectrogram");
 
 [zL, yL, xL] = findmax(SRS, TI, FI)
 [zz, yy, xx] = findmax(SRS, xvalues, FI)
 
 [df, dt] = findsigma(lambda, FFTL);
 
-for i = 1:NN
-%     hS(i, :) = findmax(S(:,:,i), TI, FI);
-%     hSRS(i,:) = findmax(SRS(:,:,i), TI, FI);
-%     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
-%     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
-    
-    [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
-    testhS(i,1) = z3;
-    testhS(i,2) = y3;
-    testhS(i,3) = x3;
-    testhS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, testhS(i,3), testhS(i,2));
-    
-    [z4, y4, x4] = findmax(SRS(:,:,i), TI, FI);
-    testhSRS(i,1) = z4;
-    testhSRS(i,2) = y4;
-    testhSRS(i,3) = x4;
-    testhSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, testhSRS(i,3), testhSRS(i,2));
-end
+% for i = 1:NN
+% %     hS(i, :) = findmax(S(:,:,i), TI, FI);
+% %     hSRS(i,:) = findmax(SRS(:,:,i), TI, FI);
+% %     hS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, hS(i,3), hS(i,2));
+% %     hSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, hSRS(i,3), hSRS(i,2));
+%     
+%     [z3, y3, x3] = findmax(S(:,:,i), TI, FI);
+%     testhS(i,1) = z3;
+%     testhS(i,2) = y3;
+%     testhS(i,3) = x3;
+%     testhS(i,4) = energy_of_square(S(:,:,i), dt, df, 1, testhS(i,3), testhS(i,2));
+%     
+%     [z4, y4, x4] = findmax(SRS(:,:,i), TI, FI);
+%     testhSRS(i,1) = z4;
+%     testhSRS(i,2) = y4;
+%     testhSRS(i,3) = x4;
+%     testhSRS(i,4) = energy_of_square(SRS(:,:,i), dt, df, 1, testhSRS(i,3), testhSRS(i,2));
+% end
 
 
 %%
