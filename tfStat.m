@@ -1,4 +1,4 @@
-function [] = tfStat(S1, S2, SRS1,SRS2)
+function [] = tfStat(S1, S2, SRS1,SRS2, heading)
 %TFSTAT draws histograms of the time and frequency distribution of the .
 %max values from the diff-spectrogram. 
 %S1: spectrogram trial 1
@@ -8,9 +8,11 @@ function [] = tfStat(S1, S2, SRS1,SRS2)
 
 figure 
 subplot(2,2,1)
-h1 = histfit(S1(:,2));
+h1 = histfit(S1(:,2), 10);
+axis([-10 20 0 40]);
 hold on
-h2 = histfit(SRS1(:,2));
+h2 = histfit(SRS1(:,2), 10);
+axis([-10 20 0 40]);
 xlabel('Hertz');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -19,13 +21,16 @@ h1(1).FaceAlpha = 0.7;
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
-title('Frequency at max, 1-trial');
+legend('S', 'S-dist', 'SRS', 'SRS-dist');
+title('Frequency at max 1-trial');
 hold off
 
-subplot(2,2,2)
-h1 = histfit(S1(:,3));
+subplot(2,2,3)
+h1 = histfit(S1(:,3), 10);
+axis([-1 3 0 40]);
 hold on
-h2 = histfit(SRS1(:,3));
+h2 = histfit(SRS1(:,3),10);
+axis([-1 3 0 40]);
 xlabel('sek');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -34,13 +39,16 @@ h1(1).FaceAlpha = 0.7;
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
+legend('S', 'S-dist', 'SRS', 'SRS-dist');
 title('Time at max, 1-trial');
 hold off
 
-subplot(2,2,3)
-h1 = histfit(S2(:,2));
+subplot(2,2,2)
+h1 = histfit(S2(:,2), 10);
+axis([-10 20 0 40]);
 hold on
-h2 = histfit(SRS2(:,2));
+h2 = histfit(SRS2(:,2), 10);
+axis([-10 20 0 40]);
 xlabel('Hertz');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -49,13 +57,16 @@ h1(1).FaceAlpha = 0.7;
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
+legend('S', 'S-dist', 'SRS', 'SRS-dist');
 title('Frequency at max, 2-trial');
 hold off
 
 subplot(2,2,4)
-h1 = histfit(S2(:,3));
+h1 = histfit(S2(:,3), 10);
+axis([-1 3 0 40]);
 hold on
-h2 = histfit(SRS2(:,3));
+h2 = histfit(SRS2(:,3), 10);
+axis([-1 3 0 40]);
 xlabel('sek');
 ylabel('occurence');
 h1(1).FaceColor = 'c';
@@ -64,9 +75,10 @@ h1(1).FaceAlpha = 0.7;
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
+legend('S', 'S-dist', 'SRS', 'SRS-dist');
 title('Time at max, 2-trial');
 hold off
-sgtitle('Frequency and time distribution');
+sgtitle(heading);
 
 
 
