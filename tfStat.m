@@ -8,10 +8,10 @@ function [] = tfStat(S1, S2, SRS1,SRS2, heading)
 
 figure 
 subplot(2,2,1)
-h1 = histfit(S1(:,2), 10);
+h1 = histfit(S1(:,2), 50);
 axis([-10 20 0 40]);
 hold on
-h2 = histfit(SRS1(:,2), 10);
+h2 = histfit(SRS1(:,2), 50);
 axis([-10 20 0 40]);
 xlabel('Hertz');
 ylabel('occurence');
