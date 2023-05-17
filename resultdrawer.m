@@ -33,7 +33,6 @@ axis(axparam)
 h2(1).FaceColor = 'm';
 h2(2).Color = 'r';
 h2(1).FaceAlpha = 0.7;
-% legend('vänster', 'vänster kernel', 'höger', 'höger kernel');
 legend('Channel 1', 'Channel 1 kernel', 'Channel 2', 'Channel 2 kernel');
 subtitle('2-trial och S');
 hold off
