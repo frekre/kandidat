@@ -3,7 +3,7 @@ function [Zmax, y_cord, x_cord] = findmax(SPEC, TI, FI)
 
 Fs = 62.55556;
 tmin = round(2.6*Fs);
-tmax = round(4.6*Fs);
+tmax = round(4.2*Fs);
 
 Z= SPEC(:,tmin:tmax,1); % begränsar tidsfönstret till 0.6-2.6 sekunder
 
