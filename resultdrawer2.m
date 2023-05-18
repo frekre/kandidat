@@ -1,7 +1,7 @@
 function [] = resultdrawer2(vS1, hS1, vSRS1, hSRS1, vS2, hS2, vSRS2, hSRS2, axparam, title)
 % Ritar med histogram!
 
-bw = 13000;
+bw = 20000;
 
 figure 
 subplot(2,2,1)

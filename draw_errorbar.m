@@ -1,4 +1,4 @@
-function [] = draw_errorbar(vS1, hS1, vSRS1, hSRS1, vS2, hS2, vSRS2, hSRS2)
+function [] = draw_errorbar(vS1, hS1, vSRS1, hSRS1, vS2, hS2, vSRS2, hSRS2, heading)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -38,7 +38,8 @@ e = errorbar(x,y,err, "o");
 e.Marker = '*';
 
 
-axis([0 13 -100000 400000])
-
+axis([0 13 -150000 450000])
+ylabel('energy');
+sgtitle(heading);
 end
 

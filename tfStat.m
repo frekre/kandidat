@@ -12,10 +12,10 @@ bwt = 0.12;
 figure 
 subplot(2,2,1)
 h1 = histogram(S1(:,2));
-axis([-10 20 0 40]);
+axis([-10 20 0 50]);
 hold on
 h2 = histogram(SRS1(:,2));
-axis([-10 20 0 40]);
+axis([-10 20 0 50]);
 xlabel('Hertz');
 ylabel('occurence');
 h1.FaceColor = 'c';
@@ -51,10 +51,10 @@ hold off
 
 subplot(2,2,2)
 h1 = histogram(S2(:,2));
-axis([-10 20 0 40]);
+axis([-10 20 0 50]);
 hold on
 h2 = histogram(SRS2(:,2));
-axis([-10 20 0 40]);
+axis([-10 20 0 50]);
 xlabel('Hertz');
 ylabel('occurence');
 h1.FaceColor = 'c';
