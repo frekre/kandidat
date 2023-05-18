@@ -55,7 +55,7 @@ h2.FaceColor = 'm';
 h2.FaceAlpha = 0.7;
 h2.BinWidth = bw;
 legend('ch1-SRS1', 'ch2-SRS1');
-subtitle('S2 (Metod SRS, Sida 1)');
+subtitle('SRS1 (Metod SRS, Sida 1)');
 hold off
 
 subplot(2,2,4)
@@ -73,7 +73,7 @@ h2.FaceColor = 'm';
 h2.FaceAlpha = 0.7;
 h2.BinWidth = bw;
 legend('ch1-SRS2', 'ch2-SRS2');
-subtitle('S2 (Metod SRS, Sida 2)');
+subtitle('SRS2 (Metod SRS, Sida 2)');
 hold off
 sgtitle(title);
 end

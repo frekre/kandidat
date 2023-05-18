@@ -12,10 +12,10 @@ bwt = 0.12;
 figure 
 subplot(2,2,1)
 h1 = histogram(S1(:,2));
-axis([-10 20 0 50]);
+axis([0 30 0 50]);
 hold on
 h2 = histogram(SRS1(:,2));
-axis([-10 20 0 50]);
+axis([0 30 0 50]);
 xlabel('Hertz');
 ylabel('occurence');
 h1.FaceColor = 'c';
@@ -27,15 +27,15 @@ h2.FaceAlpha = 0.7;
 h2.BinWidth = bwf;
 
 legend('S', 'SRS');
-title('Frequency at max 1-trial');
+title('Frequency at max, Side 1');
 hold off
 
 subplot(2,2,3)
 h1 = histogram(S1(:,3));
-axis([-0.25 2.75 0 40]);
+axis([0 2.75 0 40]);
 hold on
 h2 = histogram(SRS1(:,3));
-axis([-0.25 2.75 0 40]);
+axis([0 2.75 0 40]);
 xlabel('sek');
 ylabel('occurence');
 h1.FaceColor = 'c';
@@ -46,15 +46,15 @@ h2.FaceColor = 'm';
 h2.FaceAlpha = 0.7;
 h2.BinWidth = bwt;
 legend('S', 'SRS');
-title('Time at max, 1-trial');
+title('Time at max, Side 1');
 hold off
 
 subplot(2,2,2)
 h1 = histogram(S2(:,2));
-axis([-10 20 0 50]);
+axis([0 30 0 50]);
 hold on
 h2 = histogram(SRS2(:,2));
-axis([-10 20 0 50]);
+axis([0 30 0 50]);
 xlabel('Hertz');
 ylabel('occurence');
 h1.FaceColor = 'c';
@@ -65,15 +65,15 @@ h2.FaceColor = 'm';
 h2.FaceAlpha = 0.7;
 h2.BinWidth = bwf;
 legend('S', 'SRS');
-title('Frequency at max, 2-trial');
+title('Frequency at max, Side 2');
 hold off
 
 subplot(2,2,4)
 h1 = histogram(S2(:,3));
-axis([-0.25 2.75 0 40]);
+axis([0 2.75 0 40]);
 hold on
 h2 = histogram(SRS2(:,3));
-axis([-0.25 2.75 0 40]);
+axis([-0 2.75 0 40]);
 xlabel('sek');
 ylabel('occurence');
 h1.FaceColor = 'c';
@@ -84,7 +84,7 @@ h2.FaceColor = 'm';
 h2.FaceAlpha = 0.7;
 h2.BinWidth = bwt;
 legend('S', 'SRS');
-title('Time at max, 2-trial');
+title('Time at max, Side 2');
 hold off
 sgtitle(heading);
 
