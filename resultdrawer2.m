@@ -3,7 +3,7 @@ function [] = resultdrawer2(vS1, hS1, vSRS1, hSRS1, vS2, hS2, vSRS2, hSRS2, axpa
 
 bw = 20000;
 
-figure 
+figure
 subplot(2,2,1)
 h1 = histogram(vS1(:,4));
 axis(axparam)

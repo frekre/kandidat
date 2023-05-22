@@ -58,7 +58,7 @@ hSRS = zeros(NN,4); %SRS-resultat för sida 2
 for i=1:NN
     trialdata = resamplingtrial(avgDataChannel(data.trial, channels1, Stest(i)), 1, downsample);
     Xmat(:,i) = highpass(trialdata, filterfrequency, fs);
-
+    
 end
 
 for i=1:NN
@@ -66,7 +66,7 @@ for i=1:NN
 end
 
 
-%--------för channel 2:--------- 
+%--------för channel 2:---------
 
 for i=1:NN
     trialdata = resamplingtrial(avgDataChannel(data.trial, channels2, Stest(i)), 1, downsample);
@@ -91,8 +91,8 @@ SRSdiff = SRSV;
 if trialside ==1
     Sdiff = SH;
     SRSdiff = SRSH;
-%     Sdiff = SH-SV;
-%     SRSdiff = SRSH-SRSV;
+    %     Sdiff = SH-SV;
+    %     SRSdiff = SRSH-SRSV;
 end
 
 

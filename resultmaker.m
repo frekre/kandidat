@@ -1,7 +1,7 @@
 function [vS1, hS1, vSRS1, hSRS1, vS2, hS2, vSRS2, hSRS2] = resultmaker(data, channel1, channel2)
-%RESULTMAKER plots the result for S and SRS of both left and right side 
-% of subject and chosen channels 
-%the axis and title is 
+%RESULTMAKER plots the result for S and SRS of both left and right side
+% of subject and chosen channels
+%the axis and title is
 % data: subject
 %channel1: cell vector of chosen channels for side 1
 %channel2: cell vector of chosen channels for side 2

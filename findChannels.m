@@ -1,6 +1,6 @@
 function [channel] = findChannels(data, name)
 %Returning the channel number in the trial corresponding to the electrode
-%name. 
+%name.
 channel = [];
 for a = 1:length(name)
     for i=1:length(data.cfg.channel)
@@ -9,7 +9,7 @@ for a = 1:length(name)
         end
     end
     if length(channel) ==0
-    'Error: Channel is a reject';
+        'Error: Channel is a reject';
     end
 end
 

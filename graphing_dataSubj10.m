@@ -1,7 +1,7 @@
-%sample frequency 500 hz 
+%sample frequency 500 hz
 xvalues = -2:0.002:7; %skapa x-värden
 
-%medelvärdesbilda alla trials för en kanal: 
+%medelvärdesbilda alla trials för en kanal:
 sumtrials = zeros(60,4501);
 sumtrials(1 , :) = data.trial{1,1}(1 , :);
 
@@ -12,19 +12,19 @@ title('ej medelvärdesbildad');  % bara för att...
 for channel = 1:60
     
     for ind = 2: 352
-     sumtrials(channel, :) = sumtrials(channel, :) + data.trial{1,ind}(channel , :);
-
+        sumtrials(channel, :) = sumtrials(channel, :) + data.trial{1,ind}(channel , :);
+        
     end
     
 end
 averagedres = sumtrials./352;
 
-figure; 
+figure;
 plot(xvalues, averagedres(1, :), 'g');
 title('Medelvärde av trials för två kanaler');
 xlabel('s');
 ylabel('mv');
-hold on 
+hold on
 plot(xvalues, averagedres(54, :), 'r');
 hold off
 

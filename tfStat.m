@@ -1,15 +1,15 @@
 function [] = tfStat(S1, S2, SRS1,SRS2, heading)
 %TFSTAT draws histograms of the time and frequency distribution of the .
-%max values from the diff-spectrogram. 
+%max values from the diff-spectrogram.
 %S1: spectrogram trial 1
 %SRS1: SRS trial 1
 %S2: spectrogram trial 2
 %SRS2: SRS trial 2
 
-bwf = 1; 
+bwf = 1;
 bwt = 0.12;
 
-figure 
+figure
 subplot(2,2,1)
 h1 = histogram(S1(:,2));
 axis([0 30 0 50]);

@@ -1,4 +1,4 @@
-%Program för statistik: 
+%Program för statistik:
 
 close all
 clear all
@@ -34,15 +34,15 @@ trialside = 2;
 % hSstd = std(hS(:,1));
 % hSRSmean = mean(hSRS(:,1));
 % hSRSstd = std(hSRS(:,1));
-% 
-% %energi i rutor: 
-% 
+%
+% %energi i rutor:
+%
 % %vänster kanaler från sida 1
 % vSmeansq = mean(vS(:,4));
 % vSstdsq = std(vS(:,4));
 % vSRSmeansq = mean(vSRS(:,4));
 % vSRSstdsq = std(vSRS(:,4));
-% 
+%
 % %höger kanaler från sida 2
 % hSmeansq = mean(hS(:,4));
 % hSstdsq = std(hS(:,4));
@@ -69,7 +69,7 @@ subplot(2,2,3)
 histogram(vSRS(:,4), 'NumBins', 70);
 axis([0 15*10^5 0 9])
 subtitle('Normplot av energi i ruta från SRS - vänster')
-sgtitle('Stimuli i vänster öra')   
+sgtitle('Stimuli i vänster öra')
 
 subplot(2,2,2)
 histogram(hS(:,4), 'NumBins', 70)
@@ -79,7 +79,7 @@ subplot(2,2,4)
 histogram(hSRS(:,4), 'NumBins', 70);
 axis([0 15*10^5 0 9])
 subtitle('Histogram av energi i ruta från SRS - höger')
-%sgtitle('Stimuli i vänster öra, högra kanaler')  
+%sgtitle('Stimuli i vänster öra, högra kanaler')
 %% höger o vänster i samma S
 
 figure
@@ -101,7 +101,7 @@ figure
 histogram(vSRS(:,4), 'NumBins', 70);
 axis([0 15*10^5 0 9])
 subtitle('Histogram av energi i ruta från SRS - vänster o höger')
-%sgtitle('Stimuli i vänster öra')   
+%sgtitle('Stimuli i vänster öra')
 hold on
 histogram(hSRS(:,4), 'NumBins', 70);
 axis([0 15*10^5 0 9])
@@ -119,7 +119,7 @@ hold off
 figure
 histogram(vS(:,4), 'NumBins', 70)
 axis([0 18*10^5 0 9])
-hold on 
+hold on
 [f1, x1] = ksdensity(vS(:,4));
 plot(x1,numel(vS(:,4))*f1, 'b')
 
@@ -128,7 +128,7 @@ hold off
 %% testar histfit S
 axparam = [0 8*10^6 0 11];
 
-figure 
+figure
 subplot(2,2,1)
 h1= histfit(vS1(:,4), 70, 'kernel');
 axis(axparam)

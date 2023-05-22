@@ -1,6 +1,6 @@
 function [] = resultdrawer(vS1, hS1, vSRS1, hSRS1, vS2, hS2, vSRS2, hSRS2, axparam, title)
 
-figure 
+figure
 subplot(2,2,1)
 h1= histfit(vS1(:,4), 70, 'kernel');
 axis(axparam)

@@ -84,11 +84,11 @@ y_cord =FI(ZmaxRow);
 %----TESTAR FUNKTIONER FÖR ATT GÖRA EN RUTA OCH SUMMERAZ-LED------
 [ztest, ytest, xtes] = findmax(SRS, TI, FI); %ANVÄNDS EJ I ENERGISÖK
 
-%hitta standardavvikelse för frekvens och tid för att täck in 99 procent. 
+%hitta standardavvikelse för frekvens och tid för att täck in 99 procent.
 [df, dt] = findsigma(lambda, FFTL);
 
 %-----testar funktioner----
-[x, y] = findcord(SRS, 5); 
+[x, y] = findcord(SRS, 5);
 TestA = SRS(x-2:x+2, y-2:y+2, 1);
 
 %---HITTA ENERGI-----
