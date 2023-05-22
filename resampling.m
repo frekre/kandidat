@@ -1,4 +1,7 @@
 
+% testfil för att sampla ner signaler
+
+
 %ange kanal, samplar ner för kanal för alla trials.
 % channel = 1; %1-60
 %

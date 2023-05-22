@@ -1,3 +1,5 @@
+%Testfil för att rita upp data 
+
 %sample frequency 500 hz
 xvalues = -2:0.002:7; %skapa x-värden
 

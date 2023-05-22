@@ -1,6 +1,5 @@
 function [] = plotEEG(xvalues, y_vector, titel)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+% Simple function to plot EEG
 
 figure
 plot(xvalues, y_vector)

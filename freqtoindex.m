@@ -1,6 +1,5 @@
 function [indexlow,indexhigh,df] = freqtoindex(y, F, deltaf)
 %freq to index turns a frequency to an index.
-%
 
 indexlow = 0;
 indexhigh = 0;

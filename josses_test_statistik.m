@@ -1,4 +1,4 @@
-%Program för statistik:
+%Testprogram för statistik:
 
 close all
 clear all
