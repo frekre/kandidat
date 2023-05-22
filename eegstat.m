@@ -23,7 +23,7 @@ end
 
 
 %------hitta s1 och s2 -------
-[S1, S2] = findS1S2(data); % vektorer innehållande vilka trials som va på sida 1 och vilka som va på sida 2
+[S1, S2] = findSide1Side2(data); % vektorer innehållande vilka trials som va på sida 1 och vilka som va på sida 2
 
 
 %----ger Stest rätt trials utifrån den sida vald i parametrarna----
